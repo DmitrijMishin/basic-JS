@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*3. Товары в корзине хранятся в массиве. Задачи:
+            a) Организовать такой массив для хранения товаров в корзине;
+            b) Организовать функцию countBasketPrice, которая будет считать стоимость корзины.*/
+
+        let basket = [
+            ['shirt', 2000, 1],
+            ['pants', 1500, 2],
+            ['cap', 600, 1],
+            ['watch', 8000, 1],
+            ['leather strap', 1200, 3],
+        ];
+
+        function countBasketPrice(basket) { //пока разобрался только через for
+            let totalPrice = 0;
+            for (let i = 0; i < basket.length; i++) {
+                totalPrice += basket[i][1] * basket[i][2];
+            }
+            return totalPrice;
+        }
+        console.log('Стоимость корзины равна ' + countBasketPrice(basket) + ' руб.');
+    </script>
+</body>
+
+</html>
