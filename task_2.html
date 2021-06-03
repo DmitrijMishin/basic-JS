@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--2.Продолжить работу с интернет-магазином:
+    2.1. В прошлом домашнем задании вы реализовали корзину на базе массивов. Какими объектами можно заменить их элементы?
+    2.2. Реализуйте такие объекты.
+    2.3. Перенести функционал подсчета корзины на объектно-ориентированную базу.-->
+    <script>
+        let basket = {
+            goods: [{
+                    product: 'shirt',
+                    price: 2000,
+                    quantity: 1,
+                },
+                {
+                    product: 'pants',
+                    price: 1500,
+                    quantity: 2,
+                },
+                {
+                    product: 'cap',
+                    price: 600,
+                    quantity: 1,
+                },
+                {
+                    product: 'watch',
+                    price: 8000,
+                    quantity: 1,
+                },
+                {
+                    product: 'leather strap',
+                    price: 1200,
+                    quantity: 3,
+                },
+            ],
+
+            countBasketPrice() {
+                return this.goods.reduce((totalPrice, cartItem) => totalPrice + cartItem.price * cartItem.quantity,
+                    0);
+            }
+        };
+        console.log('Стоимость корзины равна ' + basket.countBasketPrice() + ' руб.');
+    </script>
+</body>
+
+</html>
