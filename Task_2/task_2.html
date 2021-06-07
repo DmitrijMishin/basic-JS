@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .good {
+            border: 1px solid #000;
+            margin-bottom: 5px;
+            background: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cart-list"></div>
+    <script>
+        const cartItem = {
+            render(good) {
+                return `
+                    <div class="good">
+                        <div><b>Наименование</b>: ${good.product_name}</div>
+                        <div><b>Цена за шт.</b>: ${good.price}</div>
+                        <div><b>Количество</b>: ${good.quantity}</div>
+                        <div><b>Стоимость</b>: ${good.quantity * good.price}</div>
+                    </div>`;
+            }
+        }
+
+        const cart = {
+            cartListBlock: null,
+            cartItem,
+            goods: [
+                {
+                    product_name: 'shirt',
+                    price: 2000,
+                    quantity: 1,
+                },
+                {
+                    product_name: 'pants',
+                    price: 1500,
+                    quantity: 2,
+                },
+                {
+                    product_name: 'cap',
+                    price: 600,
+                    quantity: 1,
+                },
+                {
+                    product_name: 'watch',
+                    price: 8000,
+                    quantity: 1,
+                },
+                {
+                    product_name: 'leather strap',
+                    price: 1200,
+                    quantity: 3,
+                },
+            ],
+
+            init() {
+                this.cartListBlock = document.querySelector('.cart-list');
+                this.render();
+            },
+            render() {
+                if (this.goods.length) {
+                    this.goods.forEach(good => {
+                        this.cartListBlock.insertAdjacentHTML('beforeend', this.cartItem.render(good));
+                    });
+                    this.cartListBlock.insertAdjacentHTML('beforeend',
+                        `В корзине ${this.goods.length} позиций(а) стоимостью ${this.getCartPrice()}`);
+                } else {
+                    this.cartListBlock.textContent = 'Корзина пуста';
+                }
+            },
+            getCartPrice() {
+                return this.goods.reduce(function (price, good) {
+                    return price + good.price * good.quantity;
+                }, 0);
+            },
+        }
+
+        cart.init();
+    </script>
+
+</body>
+
+</html>
